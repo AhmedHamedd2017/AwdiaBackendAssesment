@@ -1,0 +1,41 @@
+A demo System 
+
+You Should Design A Database and Implement API for a Simple ECommerce Company 
+Module Include the following 
+
+
+1.Authentication/Login API
+The authentication or login API is the access authorization that you need to access the resources 
+This login API helps validate that you are a valid user.
+* assumed created user done Manual  
+
+[Operation]
+1.1 Login  
+1.2 Logout
+
+--------------------------------------------------------------------------------------------------
+2.Product information API
+A product information API allows you to extract product details from a database of products
+that includes information about product descriptions, product ID, product titles, product specs, 
+product images, pricing, the number of products, and more.
+
+###for Authorized only 
+[Operation]
+2.1 Create product
+2.2 Update Porduct 
+2.3 Get Single Product Information
+2.4 Get List Product 
+----------------------------------------------------------------------------------------------------
+3. Orders API
+Orders APIs include details about orders that are created from your channel. 
+This API syncs order import and export status and displays a list of all created and available orders in your account.
+A user can sort and filter the order data according to the date of packaging and shipping.
+You can also cancel orders, return orders, create bulk import orders, 
+and add inventory for an ordered product. Further parameters can be added as required.
+
+[Operation]
+3.1 Create Order
+3.2 Update Order
+3.3 Cancell Order
+3.4 Get Order by ID
+3.5 Get List Order By Customer 
