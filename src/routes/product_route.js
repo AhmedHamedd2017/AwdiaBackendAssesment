@@ -5,10 +5,9 @@ const auth_user = require("../middlewares/authorize_user");
 
 const router = express.Router();
 
-//router.use(auth_user.user);
-
 router.get("/", product.getProduct);
+router.use(auth_user.user);
 router.post("/", product.createProduct);
-//router.put("/", product.updateProduct);
+router.put("/", product.updateProduct);
 
 module.exports = router;

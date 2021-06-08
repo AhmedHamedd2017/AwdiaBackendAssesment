@@ -1,11 +1,11 @@
 const cors = require("cors");
 const express = require("express");
-const expressValidator = require("express-validator");
+//const expressValidator = require("express-validator");
 
 const sequelize = require("./util/db");
 const auth_route = require("./routes/auth_route");
-const order_route = require("./routes/product_route");
-//const product_route = require("./routes/product_route");
+const product_route = require("./routes/product_route");
+const order_route = require("./routes/order_route");
 
 const PORT = 3000;
 const app = express();
@@ -15,8 +15,8 @@ app.use(express.json());
 //app.use(expressValidator());
 
 app.use("/auth", auth_route);
-app.use("/product", order_route);
-// app.use(product_controller);
+app.use("/product", product_route);
+app.use("/order", order_route);
 
 sequelize
   .authenticate()

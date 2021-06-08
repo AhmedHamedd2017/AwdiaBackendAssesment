@@ -20,6 +20,14 @@ const User = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    tokenIAT: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    tokenDAT: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
   },
   {
     timestamps: false,

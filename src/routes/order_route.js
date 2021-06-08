@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.use(auth_user.user);
 
-router.get("/order", order.getOrder);
-router.post("/order", order.createOrder);
-router.put("/order", order.updateOrder);
-router.delete("/order", order.cancelOrder);
+router.get("/", order.getOrder);
+router.post("/", order.createOrder);
+router.put("/", order.updateOrder);
+router.delete("/", order.cancelOrder);
 
 module.exports = router;
