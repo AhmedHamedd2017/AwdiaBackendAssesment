@@ -1,14 +1,23 @@
 const Product = require("../models/product_model");
+const Image = require("../models/image_model");
 
 module.exports.createProduct = async (req, res, next) => {
   //TODO
   //validate input
   req.body.iduser = req.userData.iduser;
-  try {
-    const DBresponse = await Product.create(req.body);
-    res.status(200).send("Created succesfully");
-  } catch (error) {
-    res.status(500).send("Internal server error");
+  if (req.file) {
+    try {
+      const DBresponse = await Product.create(req.body);
+      await Image.create({
+        imagename: req.file.filename,
+        idproduct: DBresponse.idproduct,
+      });
+      res.status(200).send("Created succesfully");
+    } catch (error) {
+      res.status(500).send("Internal server error");
+    }
+  } else {
+    res.status(400).send("Must include png/jpg/jpeg file");
   }
 };
 
@@ -47,7 +56,12 @@ module.exports.getProduct = async (req, res, next) => {
       if (!DBresponse) {
         res.status(204).send("No products!");
       } else {
-        res.status(200).send(DBresponse);
+        images = await Image.findOne({
+          where: { idproduct: DBresponse.idproduct },
+        });
+        res
+          .status(200)
+          .send({ image: images.imagename, ...DBresponse.dataValues });
       }
     } catch (error) {
       res.status(500).send("Internal server error");

@@ -1,5 +1,6 @@
 const cors = require("cors");
 const express = require("express");
+const multer = require("multer");
 //const expressValidator = require("express-validator");
 
 const sequelize = require("./util/db");
@@ -9,9 +10,29 @@ const order_route = require("./routes/order_route");
 
 const PORT = 3000;
 const app = express();
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/jpeg" ||
+    file.mimetype === "image/png"
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 
 app.use(cors());
 app.use(express.json());
+app.use(multer({ storage: storage, fileFilter: fileFilter }).single("image"));
 //app.use(expressValidator());
 
 app.use("/auth", auth_route);
